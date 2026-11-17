@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Aura.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:Aura.Views"
+    FlyoutBehavior="Flyout"
+    FlyoutBackgroundColor="#292039"
+    Shell.ForegroundColor="#FFFFFF"
+    Shell.TitleColor="#FFFFFF"
+    Shell.BackgroundColor="#17152F"
+    Shell.TabBarBackgroundColor="#292039"
+    Shell.TabBarForegroundColor="#E8A6FF"
+    Shell.TabBarTitleColor="#FFFFFF"
+    Shell.TabBarUnselectedColor="#BFB4D7">
+
+    <!-- TABS: navegação por abas -->
+    <FlyoutItem
+        Title="Principal"
+        Route="principal">
+
+        <Tab Title="Início" Route="inicio">
+            <ShellContent
+                Title="Início"
+                Route="home"
+                ContentTemplate="{DataTemplate views:HomePage}" />
+        </Tab>
+
+        <Tab Title="Discovery" Route="discovery-tab">
+            <ShellContent
+                Title="Discovery"
+                Route="DiscoveryPage"
+                ContentTemplate="{DataTemplate views:DiscoveryPage}" />
+        </Tab>
+
+        <Tab Title="Clima" Route="weather-tab">
+            <ShellContent
+                Title="Clima"
+                Route="WeatherPage"
+                ContentTemplate="{DataTemplate views:WeatherPage}" />
+        </Tab>
+
+    </FlyoutItem>
+
+    <!-- FLYOUT: menu lateral -->
+    <FlyoutItem
+        Title="Arte"
+        Route="art-menu">
+
+        <ShellContent
+            Title="Arte"
+            Route="ArtPage"
+            ContentTemplate="{DataTemplate views:ArtPage}" />
+
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Música"
+        Route="music-menu">
+
+        <ShellContent
+            Title="Música"
+            Route="MusicPage"
+            ContentTemplate="{DataTemplate views:MusicPage}" />
+
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Humor"
+        Route="mood-menu">
+
+        <ShellContent
+            Title="Humor"
+            Route="MoodPage"
+            ContentTemplate="{DataTemplate views:MoodPage}" />
+
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Sobre"
+        Route="about-menu">
+
+        <ShellContent
+            Title="Sobre"
+            Route="AboutPage"
+            ContentTemplate="{DataTemplate views:AboutPage}" />
+
+    </FlyoutItem>
+
+</Shell>
+

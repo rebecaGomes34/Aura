@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Aura.Models"
+    x:Class="Aura.Views.ArtPage"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource SpaceBackground}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24,42,24,32" Spacing="22">
+
+            <Grid ColumnDefinitions="*,Auto">
+                <VerticalStackLayout Spacing="3">
+                    <Label Text="AURA"
+                           FontFamily="BodoniModa"
+                           FontSize="27"
+                           TextColor="{StaticResource TextPrimary}" />
+
+                    <Label Text="ART DIMENSION"
+                           FontFamily="SpaceMono"
+                           FontSize="10"
+                           CharacterSpacing="2"
+                           TextColor="{StaticResource Lavender}" />
+                </VerticalStackLayout>
+
+                <Label Grid.Column="1"
+                       Text="02 / 04"
+                       FontFamily="SpaceMono"
+                       FontSize="10"
+                       TextColor="{StaticResource TextMuted}"
+                       VerticalOptions="Center" />
+            </Grid>
+
+            <BoxView HeightRequest="1"
+                     Color="{StaticResource BorderColor}" />
+
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Um universo de arte."
+                       FontFamily="BodoniModa"
+                       FontSize="32"
+                       TextColor="{StaticResource TextPrimary}" />
+
+                <Label Text="Explore obras, artistas e culturas de diferentes épocas em uma coleção de descobertas."
+                       FontFamily="DMSans"
+                       FontSize="14"
+                       LineHeight="1.4"
+                       TextColor="{StaticResource TextSecondary}" />
+            </VerticalStackLayout>
+
+            <Border Padding="14"
+                    BackgroundColor="{StaticResource Surface}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="ENCONTRE UMA OBRA"
+                           FontFamily="SpaceMono"
+                           FontSize="10"
+                           CharacterSpacing="1.3"
+                           TextColor="{StaticResource Mint}" />
+
+                    <Entry x:Name="SearchEntry"
+                           Placeholder="Ex.: Monet, pintura, natureza..."
+                           PlaceholderColor="{StaticResource TextMuted}"
+                           TextColor="{StaticResource TextPrimary}"
+                           FontFamily="DMSans"
+                           BackgroundColor="Transparent"
+                           ReturnType="Search"
+                           Completed="OnSearchClicked" />
+
+                    <Button x:Name="SearchButton"
+                            Text="Explorar coleção"
+                            HeightRequest="48"
+                            FontFamily="DMSans"
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            BackgroundColor="{StaticResource Lavender}"
+                            TextColor="#21172F"
+                            CornerRadius="14"
+                            Clicked="OnSearchClicked" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <VerticalStackLayout x:Name="LoadingIndicator"
+                                 IsVisible="False"
+                                 Spacing="10"
+                                 HorizontalOptions="Center">
+
+                <ActivityIndicator IsRunning="True"
+                                   Color="{StaticResource Lavender}" />
+
+                <Label Text="Explorando a coleção..."
+                       FontFamily="DMSans"
+                       FontSize="12"
+                       TextColor="{StaticResource TextSecondary}" />
+            </VerticalStackLayout>
+
+            <Label x:Name="ErrorLabel"
+                   IsVisible="False"
+                   TextColor="{StaticResource Coral}"
+                   FontFamily="DMSans"
+                   FontSize="13"
+                   HorizontalTextAlignment="Center" />
+
+            <Grid ColumnDefinitions="*,Auto">
+                <Label x:Name="GalleryTitle"
+                       Text="OBRAS PARA DESCOBRIR"
+                       FontFamily="SpaceMono"
+                       FontSize="10"
+                       CharacterSpacing="1"
+                       TextColor="{StaticResource Mint}"
+                       VerticalOptions="Center" />
+
+                <Label x:Name="ArtworkCountLabel"
+                       Grid.Column="1"
+                       Text="0 OBRAS"
+                       FontFamily="SpaceMono"
+                       FontSize="9"
+                       TextColor="{StaticResource TextMuted}"
+                       VerticalOptions="Center" />
+            </Grid>
+
+            <CollectionView x:Name="ArtworksCollection"
+                            ItemsSource="{Binding Artworks}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnArtworkSelected"
+                            IsVisible="False"
+                            HeightRequest="700">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                      Span="2"
+                                      HorizontalItemSpacing="12"
+                                      VerticalItemSpacing="16" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ArtworkModel">
+
+                        <Border BackgroundColor="{StaticResource Surface}"
+                                Stroke="{StaticResource BorderColor}"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 16"
+                                Padding="8">
+
+                            <VerticalStackLayout Spacing="8">
+
+                                <Border HeightRequest="170"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 10"
+                                        BackgroundColor="{StaticResource SurfaceLight}">
+
+                                    <Image Source="{Binding ImageUrl}"
+                                           Aspect="AspectFill"
+                                           HeightRequest="170"
+                                           WidthRequest="170" />
+                                </Border>
+
+                                <Label Text="{Binding Title}"
+                                       FontFamily="BodoniModa"
+                                       FontSize="15"
+                                       TextColor="{StaticResource TextPrimary}"
+                                       MaxLines="2"
+                                       LineBreakMode="TailTruncation" />
+
+                                <Label Text="{Binding Artist}"
+                                       FontFamily="DMSans"
+                                       FontSize="11"
+                                       TextColor="{StaticResource Lavender}"
+                                       MaxLines="2"
+                                       LineBreakMode="TailTruncation" />
+
+                                <Label Text="{Binding Date}"
+                                       FontFamily="SpaceMono"
+                                       FontSize="9"
+                                       TextColor="{StaticResource TextMuted}"
+                                       MaxLines="1"
+                                       LineBreakMode="TailTruncation" />
+
+                            </VerticalStackLayout>
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label x:Name="EmptyLabel"
+                   Text="Nenhuma obra encontrada. Tente outra pesquisa."
+                   IsVisible="False"
+                   FontFamily="DMSans"
+                   FontSize="13"
+                   TextColor="{StaticResource TextSecondary}"
+                   HorizontalTextAlignment="Center" />
+
+            <Label Text="ACERVO DO METROPOLITAN MUSEUM OF ART"
+                   FontFamily="SpaceMono"
+                   FontSize="9"
+                   CharacterSpacing="1"
+                   TextColor="{StaticResource TextMuted}"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,12,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

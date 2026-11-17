@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Aura.Views.MusicPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="Música"
+    BackgroundColor="{StaticResource SpaceBackground}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24,40,24,32" Spacing="22">
+
+            <Label
+                Text="MÚSICA"
+                FontFamily="SpaceMono"
+                FontSize="11"
+                CharacterSpacing="2"
+                TextColor="{StaticResource Mint}" />
+
+            <VerticalStackLayout Spacing="8">
+                <Label
+                    Text="Encontre sua próxima inspiração."
+                    FontFamily="BodoniModa"
+                    FontSize="30"
+                    TextColor="{StaticResource TextPrimary}" />
+
+                <Label
+                    Text="Explore artistas, conheça suas histórias e descubra novos sons."
+                    FontFamily="DMSans"
+                    FontSize="14"
+                    TextColor="{StaticResource TextSecondary}" />
+            </VerticalStackLayout>
+
+            <Border
+                Padding="16"
+                BackgroundColor="{StaticResource Surface}"
+                Stroke="{StaticResource BorderColor}"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 20">
+                <VerticalStackLayout Spacing="12">
+                    <Label
+                        Text="PESQUISE UMA MÚSICA"
+                        FontFamily="SpaceMono"
+                        FontSize="10"
+                        CharacterSpacing="1"
+                        TextColor="{StaticResource Mint}" />
+
+                    <Entry
+                        x:Name="TrackSearchEntry"
+                        Placeholder="Digite uma música ou artista..."
+                        PlaceholderColor="{StaticResource TextMuted}"
+                        TextColor="{StaticResource TextPrimary}"
+                        BackgroundColor="{StaticResource SurfaceLight}"
+                        FontFamily="DMSans"
+                        FontSize="16"
+                        HeightRequest="52"
+                        ReturnType="Search"
+                        Completed="OnTrackSearchClicked" />
+
+                    <Button
+                        x:Name="TrackSearchButton"
+                        Text="Pesquisar músicas"
+                        Clicked="OnTrackSearchClicked"
+                        HeightRequest="48"
+                        BackgroundColor="{StaticResource Mint}"
+                        TextColor="#173E39"
+                        FontFamily="DMSans"
+                        FontAttributes="Bold"
+                        CornerRadius="24" />
+                </VerticalStackLayout>
+            </Border>
+
+            <ActivityIndicator
+                x:Name="LoadingIndicator"
+                IsRunning="False"
+                IsVisible="False"
+                Color="{StaticResource Lavender}" />
+
+            <Label
+                x:Name="ErrorLabel"
+                IsVisible="False"
+                TextColor="{StaticResource Coral}"
+                FontFamily="DMSans"
+                FontSize="13" />
+
+            <VerticalStackLayout
+                x:Name="TrackResultsLayout"
+                IsVisible="False"
+                Spacing="12">
+                <Label
+                    Text="MÚSICAS ENCONTRADAS"
+                    FontFamily="SpaceMono"
+                    FontSize="10"
+                    CharacterSpacing="1"
+                    TextColor="{StaticResource Mint}" />
+
+                <CollectionView
+                    x:Name="TrackResultsCollection"
+                    SelectionMode="Single"
+                    SelectionChanged="OnTrackSelected"
+                    HeightRequest="430">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Padding="12"
+                                BackgroundColor="{StaticResource Surface}"
+                                Stroke="{StaticResource BorderColor}"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 16">
+                                <Grid ColumnDefinitions="64,*,Auto" ColumnSpacing="12">
+                                    <Image
+                                        HeightRequest="64"
+                                        WidthRequest="64"
+                                        Source="{Binding ArtworkUrl}"
+                                        Aspect="AspectFill" />
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="4">
+                                        <Label
+                                            Text="{Binding Title}"
+                                            FontFamily="DMSans"
+                                            FontAttributes="Bold"
+                                            FontSize="15"
+                                            TextColor="{StaticResource TextPrimary}"
+                                            MaxLines="2"
+                                            LineBreakMode="TailTruncation" />
+                                        <Label
+                                            Text="{Binding Artist}"
+                                            FontFamily="DMSans"
+                                            FontSize="12"
+                                            TextColor="{StaticResource Lavender}"
+                                            MaxLines="1"
+                                            LineBreakMode="TailTruncation" />
+                                        <Label
+                                            Text="{Binding Album}"
+                                            FontFamily="DMSans"
+                                            FontSize="11"
+                                            TextColor="{StaticResource TextSecondary}"
+                                            MaxLines="1"
+                                            LineBreakMode="TailTruncation" />
+                                    </VerticalStackLayout>
+                                    <Label
+                                        Grid.Column="2"
+                                        Text="PRÉVIA"
+                                        IsVisible="{Binding HasPreview}"
+                                        FontFamily="SpaceMono"
+                                        FontSize="8"
+                                        TextColor="{StaticResource Mint}"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                x:Name="PlayerLayout"
+                IsVisible="False"
+                Spacing="10">
+                <Label
+                    Text="TOCANDO AGORA"
+                    FontFamily="SpaceMono"
+                    FontSize="10"
+                    CharacterSpacing="1"
+                    TextColor="{StaticResource Mint}" />
+                <Border
+                    Padding="14"
+                    BackgroundColor="{StaticResource Surface}"
+                    Stroke="{StaticResource Lavender}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            x:Name="NowPlayingLabel"
+                            FontFamily="BodoniModa"
+                            FontSize="22"
+                            TextColor="{StaticResource TextPrimary}"
+                            MaxLines="2" />
+                        <Label
+                            x:Name="NowPlayingArtistLabel"
+                            FontFamily="DMSans"
+                            FontSize="13"
+                            TextColor="{StaticResource Lavender}" />
+                        <toolkit:MediaElement
+                            x:Name="AudioPlayer"
+                            HeightRequest="72"
+                            ShouldShowPlaybackControls="True"
+                            ShouldAutoPlay="True"
+                            MediaOpened="OnMediaOpened"
+                            MediaFailed="OnMediaFailed" />
+                        <Label
+                            x:Name="PreviewStatusLabel"
+                            FontFamily="DMSans"
+                            FontSize="12"
+                            TextColor="{StaticResource TextSecondary}" />
+                        <Button
+                            x:Name="ExternalTrackButton"
+                            Text="Ouvir música completa"
+                            Clicked="OnExternalTrackClicked"
+                            IsVisible="False"
+                            HeightRequest="44"
+                            BackgroundColor="{StaticResource SurfaceLight}"
+                            TextColor="{StaticResource TextPrimary}"
+                            FontFamily="DMSans"
+                            CornerRadius="22" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+
+            <Label
+                Text="Descubra novos sons e deixe a música inspirar sua jornada."
+                FontFamily="BodoniModaItalic"
+                FontSize="17"
+                TextColor="{StaticResource Lavender}"
+                HorizontalTextAlignment="Center"
+                Margin="0,8,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+

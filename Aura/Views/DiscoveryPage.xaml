@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Aura.Views.DiscoveryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="Descubra sua Aura"
+    BackgroundColor="{StaticResource SpaceBackground}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24,40,24,32" Spacing="22">
+
+            <!-- CABEÇALHO -->
+
+            <Label
+                Text="EXPERIÊNCIA AURA"
+                FontFamily="SpaceMono"
+                FontSize="11"
+                CharacterSpacing="2"
+                TextColor="{StaticResource Mint}" />
+
+            <VerticalStackLayout Spacing="8">
+                <Label
+                    Text="Descubra sua Aura."
+                    FontFamily="BodoniModa"
+                    FontSize="32"
+                    TextColor="{StaticResource TextPrimary}" />
+
+                <Label
+                    Text="Explore novas combinações de clima, música e arte. Cada descoberta começa com você."
+                    FontFamily="DMSans"
+                    FontSize="14"
+                    LineHeight="1.4"
+                    TextColor="{StaticResource TextSecondary}" />
+            </VerticalStackLayout>
+
+            <!-- LOCALIZAÇÃO E CLIMA -->
+
+            <Border
+                Padding="18"
+                BackgroundColor="{StaticResource Surface}"
+                Stroke="{StaticResource BorderColor}"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 22">
+
+                <VerticalStackLayout Spacing="13">
+
+                    <Label
+                        Text="01 / SUA ATMOSFERA"
+                        FontFamily="SpaceMono"
+                        FontSize="10"
+                        CharacterSpacing="1"
+                        TextColor="{StaticResource Lavender}" />
+
+                    <Label
+                        Text="Qual é o clima por aí?"
+                        FontFamily="BodoniModa"
+                        FontSize="23"
+                        TextColor="{StaticResource TextPrimary}" />
+
+                    <Entry
+                        x:Name="CityEntry"
+                        Placeholder="Digite sua cidade"
+                        Text="São Paulo"
+                        FontFamily="DMSans"
+                        FontSize="14"
+                        TextColor="{StaticResource TextPrimary}"
+                        PlaceholderColor="{StaticResource TextMuted}"
+                        BackgroundColor="#211B35"
+                        ClearButtonVisibility="WhileEditing" />
+
+                    <Label
+                        x:Name="WeatherStatusLabel"
+                        Text="O clima será consultado ao gerar sua descoberta."
+                        FontFamily="DMSans"
+                        FontSize="12"
+                        TextColor="{StaticResource TextSecondary}" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- PREFERÊNCIAS MUSICAIS -->
+
+            <Border
+                Padding="18"
+                BackgroundColor="{StaticResource Surface}"
+                Stroke="{StaticResource BorderColor}"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 22">
+
+                <VerticalStackLayout Spacing="14">
+
+                    <Label
+                        Text="02 / SUA TRILHA SONORA"
+                        FontFamily="SpaceMono"
+                        FontSize="10"
+                        CharacterSpacing="1"
+                        TextColor="{StaticResource Mint}" />
+
+                    <Label
+                        Text="Que som combina com você?"
+                        FontFamily="BodoniModa"
+                        FontSize="23"
+                        TextColor="{StaticResource TextPrimary}" />
+
+                    <Label
+                        Text="Selecione todos os estilos musicais de que você gosta."
+                        FontFamily="DMSans"
+                        FontSize="12"
+                        TextColor="{StaticResource TextSecondary}" />
+
+                    <Grid
+                        ColumnDefinitions="*,*"
+                        RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                        ColumnSpacing="10"
+                        RowSpacing="10">
+
+                        <Button
+                            x:Name="MusicIndieButton"
+                            Text="Indie"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#59416F"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="MusicPopButton"
+                            Grid.Column="1"
+                            Text="Pop"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="MusicInstrumentalButton"
+                            Grid.Row="1"
+                            Text="Instrumental"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="MusicClassicaButton"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="Clássica"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="MusicRockNacionalButton"
+                            Grid.Row="2"
+                            Text="Rock nacional"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="MusicRockInternacionalButton"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Text="Rock internacional"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14"
+                            FontSize="12" />
+
+                        <Button
+                            x:Name="MusicMetalButton"
+                            Grid.Row="3"
+                            Text="Metal"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="MusicMpBButton"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Text="MPB"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="MusicFunkButton"
+                            Grid.Row="4"
+                            Text="Funk"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="MusicSertanejoButton"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Text="Sertanejo"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="MusicRnbButton"
+                            Grid.Row="5"
+                            Text="R&amp;B"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="MusicRapButton"
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            Text="Rap / Hip-hop"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14"
+                            FontSize="12" />
+
+                        <Button
+                            x:Name="MusicEletronicaButton"
+                            Grid.Row="6"
+                            Text="Eletrônica"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="MusicJazzButton"
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            Text="Jazz"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="MusicLoFiButton"
+                            Grid.Row="7"
+                            Text="Lo-fi"
+                            Clicked="OnMusicPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                    </Grid>
+
+                    <Label
+                        x:Name="MusicPreferenceLabel"
+                        Text="Selecionados: Indie"
+                        FontFamily="DMSans"
+                        FontSize="12"
+                        TextColor="{StaticResource TextSecondary}" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- PREFERÊNCIAS ARTÍSTICAS -->
+
+            <Border
+                Padding="18"
+                BackgroundColor="{StaticResource Surface}"
+                Stroke="{StaticResource BorderColor}"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 22">
+
+                <VerticalStackLayout Spacing="14">
+
+                    <Label
+                        Text="03 / SEU UNIVERSO VISUAL"
+                        FontFamily="SpaceMono"
+                        FontSize="10"
+                        CharacterSpacing="1"
+                        TextColor="{StaticResource Mint}" />
+
+                    <Label
+                        Text="Que tipo de arte desperta sua curiosidade?"
+                        FontFamily="BodoniModa"
+                        FontSize="23"
+                        TextColor="{StaticResource TextPrimary}" />
+
+                    <Label
+                        Text="Escolha as categorias artísticas que mais chamam sua atenção."
+                        FontFamily="DMSans"
+                        FontSize="12"
+                        TextColor="{StaticResource TextSecondary}" />
+
+                    <Grid
+                        ColumnDefinitions="*,*"
+                        RowDefinitions="Auto,Auto,Auto"
+                        ColumnSpacing="10"
+                        RowSpacing="10">
+
+                        <Button
+                            x:Name="ArtPaisagensButton"
+                            Text="Paisagens"
+                            Clicked="OnArtPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#244D50"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="ArtFloresButton"
+                            Grid.Column="1"
+                            Text="Flores e plantas"
+                            Clicked="OnArtPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14"
+                            FontSize="12" />
+
+                        <Button
+                            x:Name="ArtRetratosButton"
+                            Grid.Row="1"
+                            Text="Pessoas e retratos"
+                            Clicked="OnArtPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14"
+                            FontSize="12" />
+
+                        <Button
+                            x:Name="ArtArquiteturaButton"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="Cidades e arquitetura"
+                            Clicked="OnArtPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14"
+                            FontSize="11" />
+
+                        <Button
+                            x:Name="ArtAbstrataButton"
+                            Grid.Row="2"
+                            Text="Arte abstrata"
+                            Clicked="OnArtPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                        <Button
+                            x:Name="ArtAnimaisButton"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Text="Animais"
+                            Clicked="OnArtPreferenceSelected"
+                            HeightRequest="48"
+                            BackgroundColor="#292039"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            CornerRadius="14" />
+
+                    </Grid>
+
+                    <Label
+                        x:Name="ArtPreferenceLabel"
+                        Text="Selecionados: Paisagens"
+                        FontFamily="DMSans"
+                        FontSize="12"
+                        TextColor="{StaticResource TextSecondary}" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- BOTÃO DE DESCOBERTA -->
+
+            <Button
+                x:Name="DiscoverButton"
+                Text="Revelar minha Aura"
+                Clicked="OnDiscoverClicked"
+                HeightRequest="56"
+                BackgroundColor="{StaticResource Lavender}"
+                TextColor="#21172F"
+                FontFamily="DMSans"
+                FontAttributes="Bold"
+                FontSize="16"
+                CornerRadius="28" />
+
+            <ActivityIndicator
+                x:Name="LoadingIndicator"
+                IsVisible="False"
+                IsRunning="False"
+                Color="{StaticResource Lavender}" />
+
+            <Label
+                x:Name="ErrorLabel"
+                IsVisible="False"
+                FontFamily="DMSans"
+                FontSize="13"
+                TextColor="{StaticResource Coral}" />
+
+            <!-- RESULTADO DA DESCOBERTA -->
+
+            <VerticalStackLayout
+                x:Name="DiscoveryResultLayout"
+                IsVisible="False"
+                Spacing="16">
+
+                <BoxView
+                    HeightRequest="1"
+                    Color="{StaticResource BorderColor}" />
+
+                <Label
+                    Text="SUA DESCOBERTA"
+                    FontFamily="SpaceMono"
+                    FontSize="10"
+                    CharacterSpacing="1.5"
+                    TextColor="{StaticResource Mint}" />
+
+                <Border
+                    Padding="18"
+                    BackgroundColor="{StaticResource Surface}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 22">
+
+                    <VerticalStackLayout Spacing="13">
+
+                        <Label
+                            Text="A atmosfera do seu momento"
+                            FontFamily="BodoniModa"
+                            FontSize="23"
+                            TextColor="{StaticResource Lavender}" />
+
+                        <Label
+                            x:Name="DiscoveryWeatherLabel"
+                            FontFamily="DMSans"
+                            FontSize="14"
+                            TextColor="{StaticResource TextSecondary}" />
+
+                        <Label
+                            x:Name="DiscoveryMessageLabel"
+                            FontFamily="DMSans"
+                            FontSize="14"
+                            LineHeight="1.4"
+                            TextColor="{StaticResource TextPrimary}" />
+
+                        <BoxView
+                            HeightRequest="1"
+                            Color="{StaticResource BorderColor}" />
+
+                        <!-- MÚSICA -->
+
+                        <Label
+                            Text="SUA TRILHA SONORA"
+                            FontFamily="SpaceMono"
+                            FontSize="10"
+                            CharacterSpacing="1"
+                            TextColor="{StaticResource Mint}" />
+
+                        <Grid ColumnDefinitions="90,*" ColumnSpacing="14">
+
+                            <Image
+                                x:Name="DiscoverySongImage"
+                                Grid.Column="0"
+                                WidthRequest="90"
+                                HeightRequest="90"
+                                Aspect="AspectFill" />
+
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                Spacing="5">
+
+                                <Label
+                                    x:Name="DiscoverySongTitle"
+                                    FontFamily="DMSans"
+                                    FontSize="15"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource TextPrimary}" />
+
+                                <Label
+                                    x:Name="DiscoverySongArtist"
+                                    FontFamily="DMSans"
+                                    FontSize="12"
+                                    TextColor="{StaticResource TextSecondary}" />
+
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <Label
+                            x:Name="DiscoveryMusicStatusLabel"
+                            Text="Prévia de áudio"
+                            FontFamily="DMSans"
+                            FontSize="12"
+                            TextColor="{StaticResource Mint}" />
+
+                        <toolkit:MediaElement
+                            x:Name="DiscoveryAudioPlayer"
+                            ShouldShowPlaybackControls="True"
+                            ShouldAutoPlay="True"
+                            HeightRequest="55"
+                            MediaOpened="OnDiscoveryMediaOpened"
+                            MediaFailed="OnDiscoveryMediaFailed" />
+
+                        <Button
+                            x:Name="DiscoveryExternalMusicButton"
+                            Text="Abrir música no iTunes"
+                            Clicked="OnExternalMusicClicked"
+                            IsVisible="False"
+                            HeightRequest="44"
+                            BackgroundColor="{StaticResource SurfaceLight}"
+                            TextColor="{StaticResource TextPrimary}"
+                            FontFamily="DMSans"
+                            CornerRadius="20" />
+
+                        <BoxView
+                            HeightRequest="1"
+                            Color="{StaticResource BorderColor}" />
+
+                        <!-- OBRA DE ARTE -->
+
+                        <Label
+                            Text="UMA OBRA PARA VOCÊ"
+                            FontFamily="SpaceMono"
+                            FontSize="10"
+                            CharacterSpacing="1"
+                            TextColor="{StaticResource Mint}" />
+
+                        <Image
+                            x:Name="DiscoveryArtworkImage"
+                            HeightRequest="220"
+                            Aspect="AspectFit"
+                            BackgroundColor="#211B35" />
+
+                        <Label
+                            x:Name="DiscoveryArtworkTitle"
+                            FontFamily="BodoniModa"
+                            FontSize="21"
+                            TextColor="{StaticResource TextPrimary}" />
+
+                        <Label
+                            x:Name="DiscoveryArtworkArtist"
+                            FontFamily="DMSans"
+                            FontSize="13"
+                            TextColor="{StaticResource TextSecondary}" />
+
+                        <Button
+                            x:Name="DiscoveryArtworkDetailsButton"
+                            Text="Conhecer esta obra"
+                            Clicked="OnArtworkDetailsClicked"
+                            IsVisible="False"
+                            HeightRequest="46"
+                            BackgroundColor="{StaticResource SurfaceLight}"
+                            TextColor="{StaticResource TextPrimary}"
+                            FontFamily="DMSans"
+                            CornerRadius="22" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button
+                    Text="Gerar outra descoberta"
+                    Clicked="OnDiscoverClicked"
+                    HeightRequest="50"
+                    BackgroundColor="{StaticResource SurfaceLight}"
+                    TextColor="{StaticResource TextPrimary}"
+                    FontFamily="DMSans"
+                    CornerRadius="24" />
+
+            </VerticalStackLayout>
+
+            <!-- RODAPÉ -->
+
+            <Label
+                Text="O universo está cheio de coisas esperando para serem descobertas."
+                FontFamily="BodoniModaItalic"
+                FontSize="17"
+                TextColor="{StaticResource Lavender}"
+                HorizontalTextAlignment="Center"
+                Margin="0,8,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

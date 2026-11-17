@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Aura.Views.MoodPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="Meu Humor"
+    BackgroundColor="{StaticResource SpaceBackground}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24,40,24,32" Spacing="22">
+
+            <Label
+                Text="MEU HUMOR"
+                FontFamily="SpaceMono"
+                FontSize="11"
+                CharacterSpacing="2"
+                TextColor="{StaticResource Mint}" />
+
+            <VerticalStackLayout Spacing="8">
+                <Label
+                    Text="Como está sua mente hoje?"
+                    FontFamily="BodoniModa"
+                    FontSize="30"
+                    TextColor="{StaticResource TextPrimary}" />
+
+                <Label
+                    Text="Escolha o que está sentindo e descubra uma experiência criada para este momento."
+                    FontFamily="DMSans"
+                    FontSize="14"
+                    LineHeight="1.3"
+                    TextColor="{StaticResource TextSecondary}" />
+            </VerticalStackLayout>
+
+            <Border
+                Padding="18"
+                BackgroundColor="{StaticResource Surface}"
+                Stroke="{StaticResource BorderColor}"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 22">
+
+                <VerticalStackLayout Spacing="16">
+
+                    <Label
+                        Text="ESCOLHA SEU ESTADO DE ESPÍRITO"
+                        FontFamily="SpaceMono"
+                        FontSize="10"
+                        CharacterSpacing="1"
+                        TextColor="{StaticResource Lavender}" />
+
+                    <Grid
+                        ColumnDefinitions="*,*"
+                        RowDefinitions="Auto,Auto,Auto"
+                        ColumnSpacing="12"
+                        RowSpacing="12">
+
+                        <Button x:Name="HappyButton"
+                            Grid.Row="0" Grid.Column="0"
+                            Text="Feliz"
+                            Clicked="OnMoodSelected"
+                            HeightRequest="62"
+                            BackgroundColor="#59416F"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            FontSize="16"
+                            CornerRadius="16" />
+
+                        <Button x:Name="CalmButton"
+                            Grid.Row="0" Grid.Column="1"
+                            Text="Tranquilo"
+                            Clicked="OnMoodSelected"
+                            HeightRequest="62"
+                            BackgroundColor="#244D50"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            FontSize="16"
+                            CornerRadius="16" />
+
+                        <Button x:Name="ExcitedButton"
+                            Grid.Row="1" Grid.Column="0"
+                            Text="Animado"
+                            Clicked="OnMoodSelected"
+                            HeightRequest="62"
+                            BackgroundColor="#69404E"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            FontSize="16"
+                            CornerRadius="16" />
+
+                        <Button x:Name="SadButton"
+                            Grid.Row="1" Grid.Column="1"
+                            Text="Triste"
+                            Clicked="OnMoodSelected"
+                            HeightRequest="62"
+                            BackgroundColor="#354C70"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            FontSize="16"
+                            CornerRadius="16" />
+
+                        <Button x:Name="AnxiousButton"
+                            Grid.Row="2" Grid.Column="0"
+                            Text="Ansioso"
+                            Clicked="OnMoodSelected"
+                            HeightRequest="62"
+                            BackgroundColor="#614C36"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            FontSize="16"
+                            CornerRadius="16" />
+
+                        <Button x:Name="ReflectiveButton"
+                            Grid.Row="2" Grid.Column="1"
+                            Text="Reflexivo"
+                            Clicked="OnMoodSelected"
+                            HeightRequest="62"
+                            BackgroundColor="#51416D"
+                            TextColor="White"
+                            FontFamily="DMSans"
+                            FontSize="16"
+                            CornerRadius="16" />
+
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <VerticalStackLayout
+                x:Name="ExperienceLayout"
+                IsVisible="False"
+                Spacing="16">
+
+                <BoxView
+                    HeightRequest="1"
+                    Color="{StaticResource BorderColor}" />
+
+                <Label
+                    Text="SUA EXPERIÊNCIA AURA"
+                    FontFamily="SpaceMono"
+                    FontSize="10"
+                    CharacterSpacing="1"
+                    TextColor="{StaticResource Mint}" />
+
+                <Border
+                    Padding="20"
+                    BackgroundColor="{StaticResource Surface}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 22">
+
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label
+                            x:Name="SelectedMoodLabel"
+                            FontFamily="BodoniModa"
+                            FontSize="28"
+                            TextColor="{StaticResource Lavender}" />
+
+                        <Label
+                            x:Name="MoodMessageLabel"
+                            FontFamily="DMSans"
+                            FontSize="14"
+                            LineHeight="1.4"
+                            TextColor="{StaticResource TextSecondary}" />
+
+                        <ActivityIndicator
+                            x:Name="LoadingIndicator"
+                            IsVisible="False"
+                            IsRunning="False"
+                            Color="{StaticResource Lavender}" />
+
+                        <Label
+                            x:Name="LoadingLabel"
+                            Text="Preparando suas descobertas..."
+                            IsVisible="False"
+                            FontFamily="DMSans"
+                            FontSize="12"
+                            TextColor="{StaticResource TextMuted}"
+                            HorizontalTextAlignment="Center" />
+
+                        <BoxView
+                            HeightRequest="1"
+                            Color="{StaticResource BorderColor}" />
+
+                        <Label
+                            Text="SOM PARA ESTE MOMENTO"
+                            FontFamily="SpaceMono"
+                            FontSize="10"
+                            CharacterSpacing="1"
+                            TextColor="{StaticResource Mint}" />
+
+                        <Grid ColumnDefinitions="90,*" ColumnSpacing="14">
+                            <Image
+                                x:Name="SongCoverImage"
+                                Grid.Column="0"
+                                HeightRequest="90"
+                                WidthRequest="90"
+                                Aspect="AspectFill" />
+
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                Spacing="5">
+
+                                <Label
+                                    x:Name="SongSuggestionLabel"
+                                    FontFamily="DMSans"
+                                    FontSize="15"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource TextPrimary}" />
+
+                                <Label
+                                    x:Name="SongArtistLabel"
+                                    FontFamily="DMSans"
+                                    FontSize="12"
+                                    TextColor="{StaticResource TextSecondary}" />
+
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <Label
+                            x:Name="PreviewStatusLabel"
+                            Text="Aguardando música..."
+                            FontFamily="DMSans"
+                            FontSize="12"
+                            TextColor="{StaticResource Mint}" />
+
+                        <toolkit:MediaElement
+                            x:Name="MoodAudioPlayer"
+                            ShouldShowPlaybackControls="True"
+                            ShouldAutoPlay="True"
+                            HeightRequest="55"
+                            MediaOpened="OnMoodMediaOpened"
+                            MediaFailed="OnMoodMediaFailed" />
+
+                        <Button
+                            x:Name="ExternalTrackButton"
+                            Text="Abrir música no iTunes"
+                            Clicked="OnExternalTrackClicked"
+                            IsVisible="False"
+                            HeightRequest="44"
+                            BackgroundColor="{StaticResource SurfaceLight}"
+                            TextColor="{StaticResource TextPrimary}"
+                            FontFamily="DMSans"
+                            CornerRadius="20" />
+
+                        <BoxView
+                            HeightRequest="1"
+                            Color="{StaticResource BorderColor}" />
+
+                        <Label
+                            Text="UMA OBRA PARA CONTEMPLAR"
+                            FontFamily="SpaceMono"
+                            FontSize="10"
+                            CharacterSpacing="1"
+                            TextColor="{StaticResource Mint}" />
+
+                        <Image
+                            x:Name="ArtworkImage"
+                            HeightRequest="220"
+                            Aspect="AspectFit"
+                            BackgroundColor="#211B35" />
+
+                        <Label
+                            x:Name="ArtSuggestionLabel"
+                            FontFamily="BodoniModa"
+                            FontSize="21"
+                            TextColor="{StaticResource TextPrimary}" />
+
+                        <Label
+                            x:Name="ArtArtistLabel"
+                            FontFamily="DMSans"
+                            FontSize="13"
+                            TextColor="{StaticResource TextSecondary}" />
+
+                        <Button
+                            x:Name="ArtworkDetailsButton"
+                            Text="Conhecer esta obra"
+                            Clicked="OnArtworkDetailsClicked"
+                            IsVisible="False"
+                            HeightRequest="46"
+                            BackgroundColor="{StaticResource SurfaceLight}"
+                            TextColor="{StaticResource TextPrimary}"
+                            FontFamily="DMSans"
+                            CornerRadius="22" />
+
+                        <Label
+                            Text="Uma pequena pausa também pode ser uma grande descoberta."
+                            FontFamily="BodoniModaItalic"
+                            FontSize="17"
+                            TextColor="{StaticResource Lavender}"
+                            HorizontalTextAlignment="Center"
+                            Margin="0,8,0,0" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button
+                    x:Name="RefreshButton"
+                    Text="Gerar nova combinação"
+                    Clicked="OnRefreshClicked"
+                    HeightRequest="50"
+                    BackgroundColor="{StaticResource Lavender}"
+                    TextColor="#21172F"
+                    FontFamily="DMSans"
+                    FontAttributes="Bold"
+                    CornerRadius="24" />
+
+                <Button
+                    Text="Escolher outro humor"
+                    Clicked="OnResetClicked"
+                    HeightRequest="48"
+                    BackgroundColor="{StaticResource SurfaceLight}"
+                    TextColor="{StaticResource TextPrimary}"
+                    FontFamily="DMSans"
+                    CornerRadius="24" />
+
+            </VerticalStackLayout>
+
+            <Label
+                Text="Cada sentimento faz parte da sua jornada."
+                FontFamily="BodoniModaItalic"
+                FontSize="17"
+                TextColor="{StaticResource Lavender}"
+                HorizontalTextAlignment="Center"
+                Margin="0,8,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

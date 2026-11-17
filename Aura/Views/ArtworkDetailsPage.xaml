@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Aura.Views.ArtworkDetailsPage"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource SpaceBackground}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24,42,24,36" Spacing="22">
+
+            <Grid ColumnDefinitions="Auto,*,Auto">
+
+                <Button Text="Voltar"
+                        FontFamily="DMSans"
+                        FontSize="13"
+                        TextColor="{StaticResource Lavender}"
+                        BackgroundColor="Transparent"
+                        Padding="0"
+                        Clicked="OnBackClicked" />
+
+                <Label Grid.Column="1"
+                       Text="AURA"
+                       FontFamily="BodoniModa"
+                       FontSize="24"
+                       TextColor="{StaticResource TextPrimary}"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Center" />
+
+                <Label Grid.Column="2"
+                       Text="ART"
+                       FontFamily="SpaceMono"
+                       FontSize="10"
+                       TextColor="{StaticResource Mint}"
+                       VerticalOptions="Center" />
+
+            </Grid>
+
+            <BoxView HeightRequest="1"
+                     Color="{StaticResource BorderColor}" />
+
+            <Label Text="ARTWORK DETAILS"
+                   FontFamily="SpaceMono"
+                   FontSize="10"
+                   CharacterSpacing="2"
+                   TextColor="{StaticResource Mint}" />
+
+            <Border BackgroundColor="{StaticResource Surface}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="8">
+
+                <Image x:Name="ArtworkImage"
+                       HeightRequest="330"
+                       Aspect="AspectFit" />
+
+            </Border>
+
+            <VerticalStackLayout Spacing="8">
+
+                <Label x:Name="ArtworkTitleLabel"
+                       Text="Título da obra"
+                       FontFamily="BodoniModa"
+                       FontSize="30"
+                       TextColor="{StaticResource TextPrimary}" />
+
+                <Label x:Name="ArtworkArtistLabel"
+                       Text="Artista"
+                       FontFamily="DMSans"
+                       FontSize="16"
+                       TextColor="{StaticResource Lavender}" />
+
+                <Label x:Name="ArtworkDateLabel"
+                       Text="Data"
+                       FontFamily="SpaceMono"
+                       FontSize="11"
+                       TextColor="{StaticResource TextMuted}" />
+
+            </VerticalStackLayout>
+
+            <BoxView HeightRequest="1"
+                     Color="{StaticResource BorderColor}" />
+
+            <Label Text="Sobre esta obra"
+                   FontFamily="BodoniModa"
+                   FontSize="25"
+                   TextColor="{StaticResource TextPrimary}" />
+
+            <Border Padding="18"
+                    BackgroundColor="{StaticResource Surface}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18">
+
+                <VerticalStackLayout Spacing="16">
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="ARTISTA"
+                               FontFamily="SpaceMono"
+                               FontSize="10"
+                               TextColor="{StaticResource Mint}" />
+
+                        <Label x:Name="ArtistInfoLabel"
+                               FontFamily="DMSans"
+                               FontSize="14"
+                               TextColor="{StaticResource TextPrimary}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="DATA DE CRIAÇÃO"
+                               FontFamily="SpaceMono"
+                               FontSize="10"
+                               TextColor="{StaticResource Mint}" />
+
+                        <Label x:Name="DateInfoLabel"
+                               FontFamily="DMSans"
+                               FontSize="14"
+                               TextColor="{StaticResource TextPrimary}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="CULTURA"
+                               FontFamily="SpaceMono"
+                               FontSize="10"
+                               TextColor="{StaticResource Mint}" />
+
+                        <Label x:Name="CultureInfoLabel"
+                               FontFamily="DMSans"
+                               FontSize="14"
+                               TextColor="{StaticResource TextPrimary}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="CLASSIFICAÇÃO"
+                               FontFamily="SpaceMono"
+                               FontSize="10"
+                               TextColor="{StaticResource Mint}" />
+
+                        <Label x:Name="ClassificationInfoLabel"
+                               FontFamily="DMSans"
+                               FontSize="14"
+                               TextColor="{StaticResource TextPrimary}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="TÉCNICA E MATERIAIS"
+                               FontFamily="SpaceMono"
+                               FontSize="10"
+                               TextColor="{StaticResource Mint}" />
+
+                        <Label x:Name="MediumInfoLabel"
+                               FontFamily="DMSans"
+                               FontSize="14"
+                               TextColor="{StaticResource TextPrimary}" />
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Ver no Metropolitan Museum"
+                    HeightRequest="52"
+                    FontFamily="DMSans"
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    BackgroundColor="{StaticResource Lavender}"
+                    TextColor="#21172F"
+                    CornerRadius="16"
+                    Clicked="OnMuseumClicked" />
+
+            <Label Text="INFORMAÇÕES E IMAGEM: THE METROPOLITAN MUSEUM OF ART"
+                   FontFamily="SpaceMono"
+                   FontSize="9"
+                   CharacterSpacing="0.5"
+                   TextColor="{StaticResource TextMuted}"
+                   HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

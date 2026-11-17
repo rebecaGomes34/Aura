@@ -1,0 +1,16 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build outputs
+[Bb]in/
+[Oo]bj/
+artifacts/
+
+# Secrets
+Secrets/
+
+# OS-generated files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Aura.Views.HomePage"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource SpaceBackground}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24,48,24,32" Spacing="24">
+            <Label Text="AURA"
+                   FontFamily="BodoniModa"
+                   FontSize="58"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource TextPrimary}"
+                   HorizontalTextAlignment="Center" />
+
+            <BoxView HeightRequest="2"
+                     WidthRequest="64"
+                     Color="{StaticResource Lavender}"
+                     HorizontalOptions="Center" />
+
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Seu universo começa aqui."
+                       FontFamily="BodoniModaItalic"
+                       FontSize="30"
+                       TextColor="{StaticResource Lavender}"
+                       HorizontalTextAlignment="Center" />
+
+                <Label Text="Explore arte, música, clima e descubra como você está se sentindo hoje."
+                       FontFamily="DMSans"
+                       FontSize="15"
+                       LineHeight="1.35"
+                       TextColor="{StaticResource TextSecondary}"
+                       HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+
+            <Border Padding="20"
+                    BackgroundColor="{StaticResource Surface}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 24">
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="DESCUBRA A SUA AURA"
+                           FontFamily="SpaceMono"
+                           FontSize="11"
+                           CharacterSpacing="1.5"
+                           TextColor="{StaticResource Mint}"
+                           HorizontalTextAlignment="Center" />
+
+                    <Label Text="O que inspira você hoje?"
+                           FontFamily="BodoniModa"
+                           FontSize="25"
+                           TextColor="{StaticResource TextPrimary}"
+                           HorizontalTextAlignment="Center" />
+
+                    <Button Text="Começar exploração"
+                            HeightRequest="52"
+                            FontFamily="DMSans"
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            BackgroundColor="{StaticResource Lavender}"
+                            TextColor="#21172F"
+                            CornerRadius="26"
+                            Clicked="OnDiscoveryClicked" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="EXPLORE POR CATEGORIA"
+                   FontFamily="SpaceMono"
+                   FontSize="11"
+                   CharacterSpacing="1.5"
+                   TextColor="{StaticResource TextMuted}"
+                   Margin="0,4,0,0" />
+
+            <Grid ColumnDefinitions="*,*"
+                  RowDefinitions="Auto,Auto"
+                  ColumnSpacing="12"
+                  RowSpacing="12">
+                <Button Text="Clima"
+                        HeightRequest="58"
+                        FontFamily="DMSans"
+                        FontSize="16"
+                        BackgroundColor="{StaticResource SurfaceLight}"
+                        TextColor="{StaticResource TextPrimary}"
+                        CornerRadius="16"
+                        Clicked="OnWeatherClicked" />
+
+                <Button Grid.Column="1"
+                        Text="Arte"
+                        HeightRequest="58"
+                        FontFamily="DMSans"
+                        FontSize="16"
+                        BackgroundColor="#55354E"
+                        TextColor="{StaticResource TextPrimary}"
+                        CornerRadius="16"
+                        Clicked="OnArtClicked" />
+
+                <Button Grid.Row="1"
+                        Text="Música"
+                        HeightRequest="58"
+                        FontFamily="DMSans"
+                        FontSize="16"
+                        BackgroundColor="#24444A"
+                        TextColor="{StaticResource TextPrimary}"
+                        CornerRadius="16"
+                        Clicked="OnMusicClicked" />
+
+                <Button Grid.Row="1"
+                        Grid.Column="1"
+                        Text="Meu humor"
+                        HeightRequest="58"
+                        FontFamily="DMSans"
+                        FontSize="16"
+                        BackgroundColor="#3B2B55"
+                        TextColor="{StaticResource TextPrimary}"
+                        CornerRadius="16"
+                        Clicked="OnMoodClicked" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
